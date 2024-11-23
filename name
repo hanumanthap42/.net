@@ -1,0 +1,16 @@
+using System;
+
+namespace OrganizationNameApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Define the organization name
+            string organizationName = "My Awesome Organization";
+
+            // Display the organization name
+            Console.WriteLine($"Organization Name: {organizationName}");
+        }
+    }
+}
