@@ -1,16 +1,106 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
-namespace OrganizationNameApp
+namespace BuggyCode
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+	static void Main(string[] args)
         {
-            // Define the organization name
-            string organizationName = "My Awesome Organization";
+            // We are adding the last 5 days traded volumes for each stock...
 
-            // Display the organization name
-            Console.WriteLine($"Organization Name: {organizationName}");
+            AddStock("ONGC", new int[] { 125504, 227808, 418706, 518706, 618706 });
+            AddStock("ICICI", new int[] { 642675, 505563, 655457, 555457, 645457 });
+            AddStock("TCS", new int[] { 314534, 416543, 213766, 313766, 237667 });
+            AddStock("HDFC", new int[] { 161907, 262122, 359839, 459839, 379839 });
+
+            System.Console.WriteLine("Displaying the difference in daily volume for each stock...\n");
+            DisplayDifference("ONGC");
+            DisplayDifference("TCS");
+            DisplayDifference("HDFC");
+            DisplayDifference("ICICI");
+
+           System.Console.WriteLine("\nMost traded stock : " + MostTradedStock());
         }
+	
+        private static Dictionary<string, List<int>> stockVolume = new Dictionary<string, List<int>>();
+
+        // Level 1
+        static void AddStock(string stock, int[] dailyVol)
+        {
+            // Write the logic here...
+        }
+
+
+
+
+
+
+
+        // Level 2
+        static List<double> DailyVolumeDifference(string code)
+        {
+            // Fix the bug here..
+
+            List<double> perDifference = new List<double>();
+
+            List<int> l = stockVolume[code];
+
+            double prev = 0;
+
+            double curr = 0;
+
+            for (int i = 0; i < l.Count - 1; ++i)
+            {
+                prev = l[i];
+                curr = l[i + 1];
+
+                double difference = curr - prev;
+
+                perDifference.Add(difference);
+            }
+
+            return perDifference;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        // Level 3
+        static String MostTradedStock()
+        {
+            String code = "";
+
+            // Write the logic here...
+
+            return code;
+        }
+
+        public static void DisplayDifference(string stock)
+        {
+            if (stockVolume.Count == 0) return;
+
+            List<double> volDifference = DailyVolumeDifference(stock);
+            System.Console.WriteLine("Difference in volume for " + stock);
+
+
+            foreach (var d in volDifference)
+            {
+                System.Console.Write($"{d}\t");
+            }
+            System.Console.WriteLine();
+        }
+
+
     }
+
 }
